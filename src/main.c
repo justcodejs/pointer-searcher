@@ -1,10 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
-
-#define HEIGHT 2
-#define WIDTH  2
+#include "base_include.h"
 
 typedef struct Point
 {
@@ -12,18 +6,9 @@ typedef struct Point
 	float y;
 } Point;
 
-void getPoints(char _nameFileInput[]);
-
 int main(int argc, char *argv[])
 {
-	getPoints("data/input.txt");
-
-	return 0;
-}
-
-void getPoints(char _nameFileInput[])
-{
-	FILE *in = fopen(_nameFileInput, "r");
+	FILE *in = fopen("data/input.txt", "r");
 	float values[1024];
 	int x;
 
@@ -56,4 +41,6 @@ void getPoints(char _nameFileInput[])
 		float d = sqrt(a+b);
 		printf("Point: %.1f\n", d);
 	}
+
+	return 0;
 }
