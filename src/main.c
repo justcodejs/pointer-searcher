@@ -2,20 +2,19 @@
 
 typedef struct Point
 {
-	float x;
-	float y;
-	Point *p;
+	double x;
+	double y;
 } Point;
 
 int main(int argc, char *argv[])
 {
 	FILE *in = fopen("data/input.txt", "r");
-	float values[1024];
-	int x;
+	double values[1024];
+	int x = 0;
 
 	while (!feof(in))
 	{
-		fscanf(in, "%f", &values[x]);
+		fscanf(in, "%lf", &values[x]);
 		x++;
 	}
 
@@ -23,34 +22,39 @@ int main(int argc, char *argv[])
 
 	// Save point
 	Point point[x];
+	int _x = 0;
+	int _y = 1;
+
 	for (int j = 0; j < x; j++)
 	{
-		point[j].x = values[j];
-		point[j].y = values[j+1];
+		point[j].x = values[j + _x];
+		point[j].y = values[j + _y];
+
+		_x++;
+		_y++;
 	}
 
-	float diffPoint[x/2];
-	for (int i = 0; i < x / 2; i++)
+	double diffPoint[x/2];
+	int i = 0;
+	int _i = 1;
+
+	while ((i+_i) != x/2)
 	{
-		diffPoint[i] = point[i].x - point[i].y;
+		diffPoint[i] = point[i].x - point[i + _i].x;
+		diffPoint[i + _i] = point[i].y - point[i + _i].y;
+		i++;
 	}
+	
+	double a, b, d;
 
-
-	for (int i = 0; i < x/2; i++)
+	for (int i = 0; i < (sizeof(diffPoint)/sizeof(*diffPoint))/2; i++)
 	{
-		printf("Point: %.1f\n", diffPoint[i]);
+		a = diffPoint[i] * diffPoint[i];
+		b = diffPoint[i+1] * diffPoint[i+1];
+		d = a + b;
+		printf("Distance of p1 and p2 is: %.5f\n", sqrt(d));
 	}
-
-	float a, b, d;
-	/* for (int i = 0; i < (sizeof(diffPoint)/sizeof(*diffPoint))/2; i++)
-	{
-		a = pow(diffPoint[i], 2);
-		b = pow(diffPoint[i+1], 2);
-		d = sqrt(a+b);
-		printf("Point: %.1f\n", d);
-	} */
 
 	printf("\nEnd program.\n");
-	getchar();
 	return 0;
 }
