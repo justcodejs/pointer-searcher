@@ -43,12 +43,11 @@ int main(int argc, char *argv[]) {
 	double a, b, d;
 
 	for (int i = 0; i < (sizeof(diffPoint)/sizeof(*diffPoint))/2; i++) {
-		a = diffPoint[i] * diffPoint[i];
-		b = diffPoint[i+1] * diffPoint[i+1];
-		d = a + b;
-		printf("Distance of p1 and p2 is: %.5f\n", sqrt(d));
+		a = pow(diffPoint[i],2);
+		b = pow(diffPoint[i+1],2);
+		d = sqrt(a + b);
+		printf("Distance of p1 and p2 is: %.5f\n", d);
 	}
 
-	printf("\nEnd program.\n");
 	return 0;
 }
