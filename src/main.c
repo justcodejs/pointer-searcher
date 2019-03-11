@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
 
 	while ((i+_i) != x/2) {
 		diffPoint[i] = point[i].x - point[i + _i].x;
-		diffPoint[i + _i] = point[i].y - point[i + _i].y;
+		diffPoint[i+_i] = point[i].y - point[i + _i].y;
 		i++;
 	}
 	
@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
 		a = pow(diffPoint[i],2);
 		b = pow(diffPoint[i+1],2);
 		d = sqrt(a + b);
-		printf("Distance of p1 and p2 is: %.5f\n", d);
+		printf("Distance n.%d of p1 and p2 is: %.5f\n", i+1, d);
 	}
 
 	return 0;
